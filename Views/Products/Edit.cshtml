@@ -1,0 +1,242 @@
+﻿@model EcommsPortal.Models.Product
+
+@{
+	ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm("Edit", "Products", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+	@Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+	<h4>Product</h4>
+	<hr />
+	@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+	@Html.HiddenFor(model => model.ProductId)
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+		</div>
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			@Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+		</div>
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			@Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+		</div>
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.ProductTypeId, "ProductTypeId", htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			@Html.DropDownList("ProductTypeId", null, htmlAttributes: new { @class = "form-control" })
+			@Html.ValidationMessageFor(model => model.ProductTypeId, "", new { @class = "text-danger" })
+		</div>
+	</div>
+
+
+
+	@if (Model.Files.Any(f => f.FileType == FileType.Avatar))
+	{
+		<div class="form-group">
+			<span class="control-label col-md-2"><strong>Current Avatar</strong></span>
+			<div class="col-md-10">
+				<img src="~/File?id=@Model.Files.First(f => f.FileType == FileType.Avatar).FileId" alt="avatar" />
+			</div>
+		</div>
+	}
+
+	@if (Model.Files.Any(f => f.FileType == FileType.Avatar1))
+	{
+		<div class="form-group">
+			<span class="control-label col-md-2"><strong>Current Avatar</strong></span>
+			<div class="col-md-10">
+				<img src="~/File?id=@Model.Files.First(f => f.FileType == FileType.Avatar1).FileId" alt="avatar" />
+			</div>
+		</div>
+	}
+
+
+
+	<div class="panel panel-body" style="min-height:256px">
+		<div class="col-md-9">
+			<div class="col-md-10">
+				<div class="btn btn-primary">
+					<input type="file" id="Avatar" name="upload1" />
+				</div>
+			</div>
+
+			<div id="imgPreview" class="thumbnail" style="display:none">
+				<img class="img-responsive" id="targetImg" />
+				<div class="caption">
+					<a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
+					<span id="description"></span>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="panel panel-body" style="min-height:256px">
+		<div class="col-md-9">
+
+
+			<div class="col-md-10">
+				<div class="btn btn-primary">
+					<input type="file" id="Avatar1" name="upload2" />
+				</div>
+			</div>
+
+			<div id="imgPreview1" class="thumbnail" style="display:none">
+				<img class="img-responsive" id="targetImg1" />
+				<div class="caption">
+					<a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
+					<span id="description1"></span>
+				</div>
+			</div>
+
+
+
+		</div>
+	</div>
+
+
+
+	<div class="form-group">
+		<div class="col-md-offset-2 col-md-10">
+			<input type="submit" value="Save" class="btn btn-default" />
+		</div>
+	</div>
+</div>
+}
+
+<div>
+	@Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+
+
+
+
+
+
+	<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+	<script>
+
+		$(document).ready(function () {
+
+			$("#Avatar").change(function () {
+
+				var File = this.files;
+
+				if (File && File[0]) {
+					ReadImage(File[0]);
+				}
+
+			})
+
+
+		})
+
+
+		$(document).ready(function () {
+
+			$("#Avatar1").change(function () {
+
+				var File = this.files;
+
+				if (File && File[0]) {
+					ReadImage1(File[0]);
+				}
+
+			})
+
+
+		})
+
+
+		var ReadImage = function (file) {
+
+			var reader = new FileReader;
+			var image = new Image;
+
+			reader.readAsDataURL(file);
+			reader.onload = function (_file) {
+
+				image.src = _file.target.result;
+				image.onload = function () {
+
+					var height = this.height;
+					var width = this.width;
+					var type = file.type;
+					var size = ~~(file.size / 1024) + "KB";
+
+					$("#targetImg").attr('src', _file.target.result);
+					$("#description").text("Size:" + size + ", " + height + "X " + width + ", " + type + "");
+					$("#imgPreview").show();
+
+				}
+
+			}
+
+		}
+
+
+
+		var ReadImage1 = function (file) {
+
+			var reader = new FileReader;
+			var image = new Image;
+
+			reader.readAsDataURL(file);
+			reader.onload = function (_file) {
+
+				image.src = _file.target.result;
+				image.onload = function () {
+
+					var height = this.height;
+					var width = this.width;
+					var type = file.type;
+					var size = ~~(file.size / 1024) + "KB";
+
+					$("#targetImg1").attr('src', _file.target.result);
+					$("#description1").text("Size:" + size + ", " + height + "X " + width + ", " + type + "");
+					$("#imgPreview1").show();
+
+				}
+
+			}
+
+		}
+
+
+
+
+		var ClearPreview = function () {
+			$("#Avatar").val('');
+			$("#description").text('');
+			$("#imgPreview").hide();
+
+		}
+
+	</script>
+
+}

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30002.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcommsPortal", "EcommsPortal.csproj", "{208495EB-A50B-47C7-A4BE-DBA2639F4ACE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcommsPortal.Tests", "..\EcommsPortal.Tests\EcommsPortal.Tests.csproj", "{43DB34F8-B7F6-40D2-98EB-F380BB8497FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{208495EB-A50B-47C7-A4BE-DBA2639F4ACE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{208495EB-A50B-47C7-A4BE-DBA2639F4ACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{208495EB-A50B-47C7-A4BE-DBA2639F4ACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{208495EB-A50B-47C7-A4BE-DBA2639F4ACE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43DB34F8-B7F6-40D2-98EB-F380BB8497FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43DB34F8-B7F6-40D2-98EB-F380BB8497FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43DB34F8-B7F6-40D2-98EB-F380BB8497FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43DB34F8-B7F6-40D2-98EB-F380BB8497FB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0691DC38-BBD6-48D5-A0FE-17D10132724F}
+	EndGlobalSection
+EndGlobal

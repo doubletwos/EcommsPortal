@@ -1,0 +1,61 @@
+﻿@model EcommsPortal.Models.Product
+
+@{
+	ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+	<h4>Product</h4>
+	<hr />
+	<dl class="dl-horizontal">
+		@*@if (Model.Files.All(f => f.FileType == EcommsPortal.Models.FileType.Avatar))
+		{
+			<dt>
+				Avatar
+			</dt>
+			<dd>
+				<img src="~/File?id=@Model.Files.First(f => f.FileType == EcommsPortal.Models.FileType.Avatar).FileId" alt="avatar" border-radius="50%" width="200" />
+				<img src="~/File?id=@Model.Files.Last(f => f.FileType == EcommsPortal.Models.FileType.Avatar1).FileId" alt="avatar" border-radius="50%" width="200" />
+			</dd>
+		}*@
+	
+		<dd>
+			<img src="~/File?id=@Model.Files.First(f => f.FileType == EcommsPortal.Models.FileType.Avatar).FileId" alt="avatar" border-radius="50%" width="200" />
+			<img src="~/File?id=@Model.Files.Last(f => f.FileType == EcommsPortal.Models.FileType.Avatar1).FileId" alt="avatar" border-radius="50%" width="200" />
+		</dd>
+
+
+		
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Name)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Name)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Description)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Description)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Price)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Price)
+		</dd>
+
+	</dl>
+</div>
+<p>
+	@Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |
+	@Html.ActionLink("Back to List", "Index")
+</p>
